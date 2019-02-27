@@ -15,10 +15,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>dayspan-vuetify</title>
-    <style> [v-cloak] { display: none; } </style>
+    <style>
+      [v-cloak] { display: none; }
+
+      body {
+        background-color: #ccc;
+      }
+      
+      #app_wrapper {
+        position: relative;
+        width: 1200px;
+        margin: 30px 30px;
+        background-color: #fff;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app_wrapper">
+        <div id="app"></div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>

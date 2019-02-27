@@ -1,29 +1,41 @@
 <template>
 <div class="ds-expand ds-calendar-app">
-
-  <v-navigation-drawer fixed app
-    v-model="drawer"
-    :clipped="$vuetify.breakpoint.lgAndUp">
-
-    <slot name="drawerTop"></slot>
-
-    <slot name="drawerPicker" :calendar="calendar" :picked="rebuild">
-      <div class="pa-3" v-if="calendar">
-        <ds-day-picker :span="calendar.span" @picked="rebuild"></ds-day-picker>
-      </div>
-    </slot>
-
-    <slot name="drawerBottom"></slot>
-
-  </v-navigation-drawer>
-
-  <v-toolbar app flat fixed
+  <v-toolbar card
     class="ds-app-calendar-toolbar"
     color="white"
     :clipped-left="$vuetify.breakpoint.lgAndUp">
 
     <v-toolbar-title class="ml-0" :style="toolbarStyle">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <v-dialog v-model="dialog" max-width="600px">
+        <v-toolbar-side-icon @click.stop="dialog = !dialog" slot="activator"></v-toolbar-side-icon>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Select date</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm12 md12>
+                 <slot name="drawerTop"></slot>
+
+                <slot name="drawerPicker" :calendar="calendar" :picked="rebuild">
+                  <div class="pa-3" v-if="calendar">
+                    <ds-day-picker :span="calendar.span" @picked="rebuild"></ds-day-picker>
+                  </div>
+                </slot>
+
+                <slot name="drawerBottom"></slot>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+      
       <span class="hidden-sm-and-down">
 
         <slot name="title" :calendar="calendar"></slot>
@@ -318,7 +330,7 @@ export default {
   },
 
   data: vm => ({
-    drawer: null,
+    dialog: false,
     optionsVisible: false,
     options: [],
     promptVisible: false,
