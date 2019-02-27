@@ -14,7 +14,8 @@ baseWebpackConfig.entry = {
 }
 
 var webpackConfig = merge(baseWebpackConfig, {
-  externals: [
+  // Comment this config out. Since we can't import an es6 module in a browser based vue instance we need to package dependencies together
+  /* externals: [
     function(context, request, cb) {
       if(/^[a-z\-0-9]+$/.test(request)) {
         cb(null, 'commonjs ' + request);
@@ -22,7 +23,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       }
       cb();
     }
-  ],
+  ], */
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.lib.productionSourceMap,

@@ -1,9 +1,9 @@
-
-import { dsMergeOptions, dsMergeValidate, dsValidate, dsDefaults, dsBind } from './functions';
+import { dsMergeOptions, dsMergeValidate, dsValidate, dsDefaults, dsBind, dsMerge } from './functions';
 import { default as Component } from './component';
 import * as ComponentMap from './components'
+import * as DS from 'dayspan'
 
-export default {
+const DayspanVuetify = {
 
   install(Vue, options)
   {
@@ -18,11 +18,16 @@ export default {
       ? dsMergeOptions( options, Component )
       : Component );
 
+
     // allow directives to access $dayspan
     Vue.$dayspan = $dayspan;
 
     // allow components to access $dayspan
     Vue.prototype.$dayspan = $dayspan;
+    Vue.FC = {
+      dsMerge : dsMerge,
+    }
+    Vue.DS = DS;
 
     // allow components to pull & merge default component props into given
     // component props.
@@ -37,3 +42,10 @@ export default {
   }
 
 };
+
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(DayspanVuetify)
+}
+
+export default DayspanVuetify
