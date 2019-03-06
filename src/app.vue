@@ -7,7 +7,7 @@
       @change="saveState">
 
       <template slot="title">
-        DaySpan
+        My date scheduler
       </template>
 
       <template slot="menuRight">
