@@ -269,7 +269,7 @@ export default {
   user-select: none;
   display: block;
   margin: 0;
-  border-radius: 2px;
+  border-radius: 4px;
   pointer-events: all;
 }
 

@@ -42,6 +42,7 @@
                 :placeholder="placeholder"
                 :placeholder-for-create="placeholderForCreate"
                 :calendar="calendar"
+                :events-full-height="eventsFullHeight"
               ></ds-day-times>
 
             </template>
@@ -107,6 +108,12 @@ export default {
       default() {
         return this.$dsDefaults().hours;
       }
+    },
+
+    eventsFullHeight:
+    {
+      type: Boolean,
+      default: false
     }
   },
 

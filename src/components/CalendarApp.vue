@@ -20,7 +20,7 @@
 
                 <slot name="drawerPicker" :calendar="calendar" :picked="rebuild">
                   <div class="pa-3" v-if="calendar">
-                    <ds-day-picker :span="calendar.span" @picked="rebuild"></ds-day-picker>
+                    <ds-day-picker :span="calendar.span" @picked="onPicked"></ds-day-picker>
                   </div>
                 </slot>
 
@@ -38,7 +38,7 @@
       
       <span class="hidden-sm-and-down">
 
-        <slot name="title" :calendar="calendar"></slot>
+        <slot name="setState" :calendar="calendar"></slot>
 
       </span>
     </v-toolbar-title>
@@ -98,6 +98,8 @@
 
     <v-spacer></v-spacer>
 
+    <slot name="menuLeft"></slot>
+
     <slot name="view" v-bind="{currentType, types}">
 
       <v-menu>
@@ -108,7 +110,7 @@
         <v-list>
           <v-list-tile v-for="type in types"
             :key="type.id"
-            @click="currentType = type">
+            @click="changeView(type)">
             <v-list-tile-content>
               <v-list-tile-title>{{ type.label }}</v-list-tile-title>
             </v-list-tile-content>
@@ -156,6 +158,7 @@
               v-on="$listeners"
               :calendar="calendar"
               :read-only="readOnly"
+              :events-full-height="eventsFullHeight"
               @add="add"
               @add-at="addAt"
               @edit="edit"
@@ -326,7 +329,12 @@ export default {
       default() {
         return this.$dsDefaults().promptDialog;
       }
-    }
+    },
+    eventsFullHeight:
+    {
+      type: Boolean,
+      default: false
+    },
   },
 
   data: vm => ({
@@ -487,6 +495,7 @@ export default {
       this.calendar.unselect().next();
 
       this.triggerChange();
+      this.triggerCalendarMoving();
     },
 
     prev()
@@ -494,11 +503,13 @@ export default {
       this.calendar.unselect().prev();
 
       this.triggerChange();
+      this.triggerCalendarMoving();
     },
 
     setToday()
     {
       this.rebuild( this.$dayspan.today );
+      this.triggerCalendarMoving();
     },
 
     viewDay(day)
@@ -755,6 +766,25 @@ export default {
       this.$emit('change', {
         calendar: this.calendar
       });
+    },
+
+    triggerCalendarMoving()
+    {
+      this.$emit('calendar-move', {
+        calendar: this.calendar
+      });
+    },
+
+    changeView(type)
+    {
+      this.currentType = type;
+      this.triggerCalendarMoving();
+    },
+
+    onPicked(aroundDay, force, forceType)
+    {
+      this.rebuild(aroundDay, force, forceType);
+      this.triggerCalendarMoving();
     }
   }
 }

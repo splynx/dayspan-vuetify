@@ -4,6 +4,7 @@
     <ds-calendar-app ref="app"
       :calendar="calendar"
       :read-only="readOnly"
+      :events-full-height="true"
       @change="saveState">
 
       <template slot="title">
@@ -257,6 +258,17 @@ export default {
           month: [Month.NOVEMBER],
           dayOfWeek: [Weekday.THURSDAY],
           weekspanOfMonth: [3]
+        }
+      },
+      {
+        data: {
+          title: 'Christmas Day',
+          color: '#2196F3',
+          calendar: 'US Holidays'
+        },
+        schedule: {
+          month: [Month.DECEMBER],
+          dayOfMonth: [25]
         }
       },
       {

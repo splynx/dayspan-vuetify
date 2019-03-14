@@ -21,7 +21,9 @@
         v-on="$listeners"
         :calendar-event="event"
         :key="event.id"
+        :index="i"
         :calendar="calendar"
+        :events-full-height="eventsFullHeight"
       ></ds-calendar-event-time>
 
     </template>
@@ -77,6 +79,12 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+
+    eventsFullHeight:
+    {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -87,7 +95,8 @@ export default {
       return {
         'ds-day-today': this.day.currentDay,
         'ds-day-past': this.day.currentOffset < 0,
-        'ds-day-future': this.day.currentOffset > 0
+        'ds-day-future': this.day.currentOffset > 0,
+        'ds-day-view': this.calendar.type === 0
       };
     },
 
@@ -210,6 +219,7 @@ export default {
   width: 0;
   border-right: #e0e0e0 1px solid;
   border-bottom: #e0e0e0 1px solid;
+  overflow: hidden;
 
   &.ds-day-today {
     background-color: rgba(0,0,0,0.04);
@@ -222,10 +232,16 @@ export default {
   &.ds-day-future {
 
   }
+
+  &.ds-day-view {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }
 
 .ds-hour {
   height: 40px;
+  width: 100%;
   border-bottom: #e0e0e0 1px solid;
 }
 

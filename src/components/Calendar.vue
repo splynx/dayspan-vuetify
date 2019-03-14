@@ -45,6 +45,7 @@
         :calendar="calendar"
         :placeholder="placeholder"
         :placeholder-for-create="placeholderForCreate"
+        :events-full-height="eventsFullHeight"
         @mouse-move="mouseMove"
         @mouse-down="mouseDown"
         @mouse-up="mouseUp"
@@ -93,6 +94,12 @@ export default {
     },
 
     readOnly:
+    {
+      type: Boolean,
+      default: false
+    },
+
+    eventsFullHeight:
     {
       type: Boolean,
       default: false

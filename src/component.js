@@ -432,11 +432,12 @@ export default {
         left: calendarEvent.starting ? '0px' : '-5px',
         right: calendarEvent.ending ? '0px' : '-6px',
         textDecoration: cancelled ? 'line-through' : 'inherit',
-        textDecorationColor: cancelled ? color : 'inherit'
+        textDecorationColor: cancelled ? color : 'inherit',
+        border: '1px solid white'
       };
     },
 
-    getStyleTimed(details, calendarEvent)
+    getStyleTimed(calendar, details, calendarEvent, eventsFullHeight, index)
     {
       let past = calendarEvent.time.end.isBefore( this.now );
       let cancelled = calendarEvent.cancelled;
@@ -444,17 +445,33 @@ export default {
 
       let color = this.getStyleColor( details, calendarEvent );
       let stateColor = this.getStyleColor( details, calendarEvent, past, cancelled );
+      let height = eventsFullHeight ? bounds.height + 'px' : '50px';
+      let width = null;
+      let left = 0;
+      let maxWidth = 'none';
+
+      if (calendar.type === 0) {
+        width = '110px';
+        left = calendarEvent.col * 110 + 'px';
+      } else {
+        width = 'fit-content';
+        left = bounds.left * 1.5 + '%';
+        maxWidth = (99 - bounds.left * 1.5) + '%';
+      }
 
       return {
         top: bounds.top + 'px',
-        height: bounds.height + 'px',
-        left: bounds.left + '%',
-        width: (100 - bounds.left) + '%',
+        height: height,
+        left: left,
+        width: width,
+        maxWidth: maxWidth,
         backgroundColor: stateColor,
         marginLeft: calendarEvent.starting ? 0 : '-5px',
         marginRight: calendarEvent.ending ? 0 : '-5px',
         textDecoration: cancelled ? 'line-through' : 'inherit',
-        textDecorationColor: cancelled ? stateColor : 'inherit'
+        textDecorationColor: cancelled ? stateColor : 'inherit',
+        border: '1px solid white',
+        paddingRight: '2px',
       };
     },
 
@@ -505,7 +522,8 @@ export default {
         left: '0px',
         right: '0px',
         marginRight: '-1px',
-        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget )
+        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget ),
+        borderLeft: '4px solid #1197d6'
       };
     },
 
@@ -521,7 +539,8 @@ export default {
         color: details.forecolor,
         left: starting ? '0px' : '-5px',
         right: ending ? '0px' : '-6px',
-        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget )
+        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget ),
+        borderLeft: '4px solid #1197d6'
       };
     },
 

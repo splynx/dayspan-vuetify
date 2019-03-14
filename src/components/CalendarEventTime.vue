@@ -78,6 +78,15 @@ export default {
     isPlaceholderWithDay:
     {
       type: Day
+    },
+    eventsFullHeight:
+    {
+      type: Boolean,
+      default: false
+    },
+    index:
+    {
+      type: Number
     }
   },
 
@@ -87,7 +96,7 @@ export default {
     {
       return this.isPlaceholderWithDay ?
         this.$dayspan.getStylePlaceholderTimed( this.details, this.calendarEvent, this.isPlaceholderWithDay ) :
-        this.$dayspan.getStyleTimed( this.details, this.calendarEvent );
+        this.$dayspan.getStyleTimed( this.calendar, this.details, this.calendarEvent, this.eventsFullHeight, this.index );
     },
 
     showName()
@@ -234,6 +243,17 @@ export default {
   width: 100%;
 }
 
+.ds-calendar-event::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background-color: #1197d6;
+  left: 0;
+  top: 0;
+}
+
 .ds-calendar-event {
   margin: 1px;
   color: white;
@@ -246,7 +266,7 @@ export default {
   position: absolute;
   right: 0px;
   user-select: none;
-  border-radius: 2px;
+  border-radius: 4px;
   pointer-events: none;
 
   .v-menu__activator {

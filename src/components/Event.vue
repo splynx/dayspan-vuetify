@@ -145,7 +145,7 @@
                 <!-- Calendar -->
                 <slot name="eventDetailsCalendar" v-bind="slotData">
                   <v-text-field v-if="$dayspan.supports.calendar"
-                    single-line hide-details solo flat readonly
+                    single-line hide-details solo flat
                     prepend-icon="event"
                     :label="labels.calendar"
                     :readonly="isReadOnly"

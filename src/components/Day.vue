@@ -229,8 +229,8 @@ export default {
   border-right: #e0e0e0 1px solid;
   border-bottom: #e0e0e0 1px solid;
   padding: 4px;
-  overflow: hidden;
   user-select: none;
+  overflow: hidden;
 
   .ds-dom {
     text-decoration: none;
