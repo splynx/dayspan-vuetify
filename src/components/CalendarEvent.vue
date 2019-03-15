@@ -273,4 +273,11 @@ export default {
   pointer-events: all;
 }
 
+.ds-ev-title {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+}
+
 </style>

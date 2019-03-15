@@ -26,7 +26,7 @@
             :style="{color: details.forecolor}">
             {{ details.icon }}
           </v-icon>
-          <strong class="ds-ev-title">{{ details.title }}</strong>
+          <strong class="ds-ev-title" :style="titleStyle">{{ details.title }}</strong>
           <span class="ds-ev-description">{{ details.description }}</span>
 
         </slot>
@@ -97,6 +97,16 @@ export default {
       return this.isPlaceholderWithDay ?
         this.$dayspan.getStylePlaceholderTimed( this.details, this.calendarEvent, this.isPlaceholderWithDay ) :
         this.$dayspan.getStyleTimed( this.calendar, this.details, this.calendarEvent, this.eventsFullHeight, this.index );
+    },
+
+    titleStyle()
+    {
+        return {
+          display: 'inline-block',
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          width: '100%'
+        };
     },
 
     showName()

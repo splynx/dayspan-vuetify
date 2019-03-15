@@ -29,7 +29,9 @@
     </template>
 
     <div v-if="day.currentDay"
-      :style="nowLine"></div>
+      :style="nowLine">
+      <div class="now-line-mark"></div>  
+    </div>
 
     <div v-if="hasPlaceholder">
 
@@ -237,6 +239,16 @@ export default {
     overflow-x: auto;
     overflow-y: hidden;
   }
+
+  .now-line-mark {
+      position: absolute;
+      top: -7px;
+      left: -9px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ea4335;
+    }
 }
 
 .ds-hour {

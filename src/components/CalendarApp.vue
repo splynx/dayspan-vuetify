@@ -783,6 +783,8 @@ export default {
 
     onPicked(aroundDay, force, forceType)
     {
+      // Hide select date dialog
+      this.dialog = false;
       this.rebuild(aroundDay, force, forceType);
       this.triggerCalendarMoving();
     }

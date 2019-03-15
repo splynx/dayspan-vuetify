@@ -18,7 +18,7 @@
        v-if="allowEdit"
        color="secondary"
        small absolute bottom left fab icon
-       @click="edit">
+       @click="openEdit">
        <v-icon>edit</v-icon>
      </v-btn>
 
@@ -92,7 +92,7 @@
          </v-list-tile-content>
        </v-list-tile>
 
-       <v-list-tile v-if="details.description">
+       <v-list-tile v-if="details.description" title="Description">
          <v-list-tile-avatar>
            <v-icon>subject</v-icon>
          </v-list-tile-avatar>
@@ -304,7 +304,10 @@ export default {
 
   methods:
   {
-
+    openEdit(e)
+    {
+      this.edit(e, this.calendarEvent, this.calendar);
+    }
   }
 }
 </script>

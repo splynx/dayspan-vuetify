@@ -482,7 +482,7 @@ export default {
 
     getStyleNowBorder()
     {
-      return 'black solid 3px';
+      return '#ea4335 solid 2px';
     },
 
     getStyleNow()

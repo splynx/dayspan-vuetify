@@ -148,7 +148,12 @@ export default {
 
     visibleEvents()
     {
-      return this.day.events.filter( this.isVisible );
+      let events = this.day.events.filter( this.isVisible );
+      if (events.length > 4) {
+        events = events.slice(0, 4);
+      }
+
+      return events;
     }
   },
 
@@ -231,6 +236,7 @@ export default {
   padding: 4px;
   user-select: none;
   overflow: hidden;
+  min-height: 120px;
 
   .ds-dom {
     text-decoration: none;

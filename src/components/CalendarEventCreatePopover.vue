@@ -19,7 +19,7 @@
        v-if="!details.readonly"
        color="secondary"
        small absolute bottom left fab icon
-       @click="edit">
+       @click="onEdit">
        <v-icon>{{ icons.edit }}</v-icon>
      </v-btn>
 
@@ -277,6 +277,12 @@ export default {
       default() {
         return this.$dsDefaults().busyOptions;
       }
+    },
+
+    readOnly:
+    {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -356,6 +362,13 @@ export default {
 
       this.$emit('create-edit', ev);
 
+      this.finishEvent( ev );
+    },
+
+    onEdit()
+    {
+      var ev = this.getEvent('open-edit');
+      this.$emit('open-edit', ev);
       this.finishEvent( ev );
     },
 
