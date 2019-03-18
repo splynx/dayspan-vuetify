@@ -6,13 +6,17 @@
    <v-toolbar extended flat
     :style="styleHeader">
 
-     <v-toolbar-title slot="extension">
-       {{ details.title }}
-       <v-icon v-if="details.icon"
-        :style="styleButton">
-         {{ details.icon }}
-       </v-icon>
-     </v-toolbar-title>
+      <template slot="extension">
+        <slot name="eventPopoverToolbarTitle" v-bind="slotData">
+          <v-toolbar-title>
+          {{ details.title }}
+            <v-icon v-if="details.icon"
+              :style="styleButton">
+              {{ details.icon }}
+            </v-icon>
+          </v-toolbar-title>
+        </slot>
+      </template>
 
      <v-btn
        v-if="allowEdit"
@@ -67,44 +71,45 @@
 
      <v-list dense>
 
-       <v-list-tile>
-         <v-list-tile-avatar>
-           <v-icon>access_time</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
-           <slot name="eventPopoverOccurs" v-bind="slotData">
-             <v-list-tile-title>{{ startDate }}</v-list-tile-title>
-             <v-list-tile-sub-title>{{ occurs }}</v-list-tile-sub-title>
-           </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+      <slot name="eventPopoverOccurs" v-bind="slotData">
+        <v-list-tile>
+          <v-list-tile-avatar>
+            <v-icon>access_time</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+              <v-list-tile-title>{{ startDate }}</v-list-tile-title>
+              <v-list-tile-sub-title>{{ occurs }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+       </slot>
 
-       <v-list-tile v-if="details.location">
-         <v-list-tile-avatar>
-           <v-icon>location_on</v-icon>
-         </v-list-tile-avatar>
-         <v-list-tile-content>
-           <slot name="eventPopoverLocation" v-bind="slotData">
-             <v-list-tile-title>
-               <span v-html="details.location"></span>
-             </v-list-tile-title>
-           </slot>
-         </v-list-tile-content>
-       </v-list-tile>
+      <slot name="eventPopoverLocation" v-bind="slotData">
+        <v-list-tile v-if="details.location">
+          <v-list-tile-avatar>
+            <v-icon>location_on</v-icon>
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+            
+              <v-list-tile-title>
+                <span v-html="details.location"></span>
+              </v-list-tile-title>
+            
+          </v-list-tile-content>
+        </v-list-tile>
+      </slot>
 
+      <slot name="eventPopoverDescription" v-bind="slotData">
        <v-list-tile v-if="details.description" title="Description">
          <v-list-tile-avatar>
            <v-icon>subject</v-icon>
          </v-list-tile-avatar>
          <v-list-tile-content>
-           <slot name="eventPopoverDescription" v-bind="slotData">
-             <v-list-tile-title>
-               <span v-html="details.description"></span>
-             </v-list-tile-title>
-           </slot>
+            <v-list-tile-title>
+              <span v-html="details.description"></span>
+            </v-list-tile-title>
          </v-list-tile-content>
        </v-list-tile>
-
+      </slot>
        <v-list-tile v-if="details.notify">
          <v-list-tile-avatar>
            <v-icon>notifications</v-icon>
@@ -231,7 +236,10 @@ export default {
         edit: this.edit,
         close: this.close,
         details: this.details,
-        readOnly: this.readOnly
+        readOnly: this.readOnly,
+        startDate: this.startDate,
+        occurs: this.occurs,
+        styleButton: this.styleButton
       };
     },
 

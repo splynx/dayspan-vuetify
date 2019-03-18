@@ -18,7 +18,7 @@
       @mouseup="mouseUpEvent">
 
       <span v-if="showName">
-        <slot name="eventTimeTitle" v-bind="{calendarEvent, details}">
+        <slot name="eventTimeTitle" v-bind="{calendarEvent, details, titleStyle}">
 
           <v-icon class="ds-ev-icon"
             v-if="hasIcon"

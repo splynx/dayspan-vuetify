@@ -37,7 +37,7 @@
         ></ds-calendar-event-create-popover>
       </template>
 
-      <template slot="eventTimeTitle" slot-scope="{calendarEvent, details}">
+      <template slot="eventTimeTitle" slot-scope="{calendarEvent, details, titleStyle}">
         <div>
           <v-icon class="ds-ev-icon"
             v-if="details.icon"
@@ -45,7 +45,7 @@
             :style="{color: details.forecolor}">
             {{ details.icon }}
           </v-icon>
-          <strong class="ds-ev-title">{{ details.title }}</strong>
+          <strong class="ds-ev-title" :style="titleStyle">{{ details.title }}</strong>
         </div>
         <div class="ds-ev-description">{{ getCalendarTime( calendarEvent ) }}</div>
       </template>
@@ -89,6 +89,21 @@ export default {
     storeKey: 'dayspanState',
     calendar: Calendar.months(),
     readOnly: false,
+    statuses: [
+      {
+        value: 0,
+        text: 'To Do',
+      },
+      {
+        value: 1,
+        text: 'In progress',
+      },
+      {
+        value: 2,
+        text: 'Done',
+      },
+    ],
+    status: 0,
     currentLocale: vm.$dayspan.currentLocale,
     locales: [
       { value: 'en', text: 'English' },
