@@ -291,9 +291,13 @@ export default {
       }
     },
 
-    getPrefix(calendarEvent, sameDay)
+    getPrefix(calendarEvent, sameDay, format)
     {
-      return sameDay.length === 1 ? sameDay[0].start.format('ha') : '(' + sameDay.length + ')';
+      if (typeof format !== 'undefined' && format === '24H') {
+        return sameDay.length === 1 ? sameDay[0].start.format('HH:mm') : '(' + sameDay.length + ')';
+      } else {
+        return sameDay.length === 1 ? sameDay[0].start.format('ha') : '(' + sameDay.length + ')';
+      }
     },
 
     getScheduleDescription(schedule)
@@ -445,7 +449,7 @@ export default {
 
       let color = this.getStyleColor( details, calendarEvent );
       let stateColor = this.getStyleColor( details, calendarEvent, past, cancelled );
-      let height = eventsFullHeight ? bounds.height + 'px' : '50px';
+      let height = eventsFullHeight ? bounds.height : 50;
       let width = null;
       let left = 0;
       let maxWidth = 'none';
@@ -461,7 +465,8 @@ export default {
 
       return {
         top: bounds.top + 'px',
-        height: height,
+        height: height + 'px',
+        minHeight: '50px',
         left: left,
         width: width,
         maxWidth: maxWidth,

@@ -12,6 +12,7 @@
         :calendar="calendar"
         :placeholder="placeholder"
         :placeholder-for-create="placeholderForCreate"
+        :time-format="timeFormat"
       ></ds-day>
 
     </template>
@@ -51,6 +52,12 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+
+    timeFormat:
+    {
+      type: String,
+      default: '12H'
     }
   },
 

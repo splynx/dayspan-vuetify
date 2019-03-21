@@ -159,6 +159,7 @@
               :calendar="calendar"
               :read-only="readOnly"
               :events-full-height="eventsFullHeight"
+              :hours-format="hoursFormat"
               @add="add"
               @add-at="addAt"
               @edit="edit"
@@ -335,6 +336,13 @@ export default {
       type: Boolean,
       default: false
     },
+    hoursFormat:
+    {
+      type: String,
+      default() {
+        return this.$dsDefaults().hoursFormat;
+      }
+    }
   },
 
   data: vm => ({

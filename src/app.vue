@@ -5,6 +5,7 @@
       :calendar="calendar"
       :read-only="readOnly"
       :events-full-height="true"
+      hours-format="24H"
       @change="saveState">
 
       <template slot="title">
@@ -335,7 +336,6 @@ export default {
 
       this.$dayspan.setLocale(code);
       this.$dayspan.refreshTimes();
-
       this.$refs.app.$forceUpdate();
     },
 

@@ -9,6 +9,7 @@
         :calendar="calendar"
         :placeholder="placeholder"
         :placeholder-for-create="placeholderForCreate"
+        :time-format="hoursFormat"
         @mouse-move-day="mouseMoveDay"
         @mouse-down-day="mouseDownDay"
         @mouse-up-day="mouseUp"
@@ -27,6 +28,7 @@
         :calendar="calendar"
         :placeholder="placeholder"
         :placeholder-for-create="placeholderForCreate"
+        :time-format="hoursFormat"
         @mouse-move-day="mouseMoveDay"
         @mouse-down-day="mouseDownDay"
         @mouse-up-day="mouseUp"
@@ -46,6 +48,7 @@
         :placeholder="placeholder"
         :placeholder-for-create="placeholderForCreate"
         :events-full-height="eventsFullHeight"
+        :hours-format="hoursFormat"
         @mouse-move="mouseMove"
         @mouse-down="mouseDown"
         @mouse-up="mouseUp"
@@ -103,6 +106,14 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+
+    hoursFormat:
+    {
+      type: String,
+      default() {
+        return this.$dsDefaults().hoursFormat;
+      }
     }
   },
 

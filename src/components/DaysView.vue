@@ -23,7 +23,7 @@
             <div class="ds-hour-list">
 
               <div class="ds-hour"
-                v-for="(hour, i) in hours"
+                v-for="(hour, i) in hoursList"
                 :class="hourClasses[ i ]">
 
                 <div class="ds-hour-text">{{ hour }}</div>
@@ -43,6 +43,7 @@
                 :placeholder-for-create="placeholderForCreate"
                 :calendar="calendar"
                 :events-full-height="eventsFullHeight"
+                :hours-format="this.hoursFormat"
               ></ds-day-times>
 
             </template>
@@ -114,6 +115,14 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+
+    hoursFormat:
+    {
+      type: String,
+      default() {
+        return this.$dsDefaults().hoursFormat;
+      }
     }
   },
 
@@ -130,13 +139,28 @@ export default {
     {
       var currentHour = this.$dayspan.now.hour;
 
-      return this.hours.map((hour, index) =>
+      return this.hoursList.map((hour, index) =>
       {
         return {
           'ds-same-hour': index === currentHour,
           'ds-past-hour': index < currentHour
         };
       });
+    },
+
+    hoursList()
+    {
+      if (this.hoursFormat === '12H') {
+        return [
+          '    ', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am',
+          '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'
+        ];
+      } else {
+        return [
+          '00:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00',
+          '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'
+        ];
+      }
     }
   },
 
@@ -241,6 +265,10 @@ export default {
       text-align: center;
       border-bottom: none;
       height: 40px;
+
+      &:first-child .ds-hour-text {
+        top: 0;
+      }
 
       .ds-hour-text {
         display: block;

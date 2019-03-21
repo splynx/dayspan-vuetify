@@ -7,7 +7,8 @@ export default {
 
   dsCalendar: {
     handleAdd: true,
-    handleMove: true
+    handleMove: true,
+    hoursFormat: '12H',
   },
 
   dsDay: {
@@ -56,7 +57,8 @@ export default {
     promptDialog: {
       maxWidth: '300px',
       persistent: true
-    }
+    },
+    hoursFormat: '12H'
   },
 
   dsAgenda: {
@@ -492,7 +494,8 @@ export default {
     hours: [
       LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY,
       LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY, LOCALE_ENTRY
-    ]
+    ],
+    hoursFormat: '12H'
   },
 
   dsGestures: {

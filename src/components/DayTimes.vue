@@ -24,6 +24,7 @@
         :index="i"
         :calendar="calendar"
         :events-full-height="eventsFullHeight"
+        :hours-format="hoursFormat"
       ></ds-calendar-event-time>
 
     </template>
@@ -87,6 +88,14 @@ export default {
     {
       type: Boolean,
       default: false
+    },
+
+    hoursFormat:
+    {
+      type: String,
+      default() {
+        return '12H'
+      }
     }
   },
 

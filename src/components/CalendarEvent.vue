@@ -89,6 +89,12 @@ export default {
     isPlaceholderWithDay:
     {
       type: Day
+    },
+
+    timeFormat:
+    {
+      type: String,
+      default: '12H'
     }
   },
 
@@ -123,7 +129,7 @@ export default {
 
     getPrefix()
     {
-      return this.$dayspan.getPrefix( this.calendarEvent, this.sameDayEvents );
+      return this.$dayspan.getPrefix( this.calendarEvent, this.sameDayEvents, this.timeFormat );
     },
 
     showName()
@@ -274,7 +280,6 @@ export default {
 }
 
 .ds-ev-title {
-  display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;

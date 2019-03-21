@@ -34,6 +34,7 @@
         :calendar-event="event"
         :calendar="calendar"
         :index="i"
+        :time-format="timeFormat"
       ></ds-calendar-event>
 
     </template>
@@ -97,6 +98,12 @@ export default {
       default() {
         return this.$dsDefaults().formats;
       }
+    },
+
+    timeFormat:
+    {
+      type: String,
+      default: '12H'
     }
   },
 

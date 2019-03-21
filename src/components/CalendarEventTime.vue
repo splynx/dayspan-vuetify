@@ -87,6 +87,11 @@ export default {
     index:
     {
       type: Number
+    },
+    hoursFormat:
+    {
+      type: String,
+      default: '12H'
     }
   },
 

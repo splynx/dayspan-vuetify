@@ -24,6 +24,7 @@
       :calendar="calendar"
       :placeholder="placeholder"
       :placeholder-for-create="placeholderForCreate"
+      :time-format="timeFormat"
     ></ds-day-row>
 
   </div>
@@ -63,6 +64,12 @@ export default {
       default() {
         return this.$dsDefaults().weekdays;
       }
+    },
+
+    timeFormat:
+    {
+      type: String,
+      default: '12H'
     }
   },
 
