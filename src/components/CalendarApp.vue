@@ -151,7 +151,7 @@
 
         <div v-else class="ds-expand">
 
-          <slot name="calendarAppCalendar" v-bind="{$scopedSlots, $listeners, calendar, add, addAt, edit, viewDay, handleAdd, handleMove}">
+          <slot name="calendarAppCalendar" v-bind="{$scopedSlots, $listeners, calendar, add, addAt, edit, viewDay, handleAdd, handleMove, hoursFormat, eventsFullHeight}">
 
             <ds-calendar ref="calendar"
               v-bind="{$scopedSlots}"

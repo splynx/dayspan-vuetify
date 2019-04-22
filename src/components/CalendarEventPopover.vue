@@ -352,7 +352,9 @@ export default {
     padding: 0 16px !important;
 
     .v-toolbar__title {
-      margin-left: 56px;
+      margin-left: 85px;
+      text-overflow: ellipsis;
+      white-space: normal;
     }
   }
 }
