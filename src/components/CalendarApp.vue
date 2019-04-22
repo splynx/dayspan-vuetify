@@ -5,43 +5,60 @@
     color="white"
     :clipped-left="$vuetify.breakpoint.lgAndUp">
 
-    <v-toolbar-title class="ml-0" :style="toolbarStyle">
-      <v-dialog v-model="dialog" max-width="600px">
-        <v-toolbar-side-icon @click.stop="dialog = !dialog" slot="activator"></v-toolbar-side-icon>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Select date</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm12 md12>
-                 <slot name="drawerTop"></slot>
+    <slot name="selectDateWidget" v-bind="{toolbarStyle, dialog, rebuild, onPicked, calendar}">
+      <v-toolbar-title class="ml-0" :style="toolbarStyle">
+        <v-menu
+          v-model="dialog"
+          :close-on-content-click="false"
+          :nudge-width="200"
+          max-width="450"
+          offset-y
+        >
 
-                <slot name="drawerPicker" :calendar="calendar" :picked="rebuild">
-                  <div class="pa-3" v-if="calendar">
-                    <ds-day-picker :span="calendar.span" @picked="onPicked"></ds-day-picker>
-                  </div>
-                </slot>
+          <template v-slot:activator="{ on }">
+            <v-toolbar-side-icon slot="activator" @click.stop="dialog = !dialog"></v-toolbar-side-icon>
+          </template>
 
-                <slot name="drawerBottom"></slot>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-      
-      <span class="hidden-sm-and-down">
+          <v-card>
+            <v-card-title>
+              <slot name="selectDateWidgetTitle">
+                <span class="headline">Select date</span>
+              </slot>
+            </v-card-title>
+            <v-card-text>
+              <v-container grid-list-md :style="{ padding: '0' }">
+                <v-layout wrap>
+                  <v-flex xs12 sm12 md12>
+                    <slot name="drawerTop"></slot>
 
-        <slot name="setState" :calendar="calendar"></slot>
+                    <slot name="drawerPicker" :calendar="calendar" :picked="rebuild">
+                      <div class="pa-3" v-if="calendar">
+                        <ds-day-picker :span="calendar.span" @picked="onPicked"></ds-day-picker>
+                      </div>
+                    </slot>
 
-      </span>
-    </v-toolbar-title>
+                    <slot name="drawerBottom"></slot>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <slot name="selectDateWidgetActions" v-bind="{dialog}">
+                <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+              </slot>
+            </v-card-actions>
+          </v-card>
+
+        </v-menu>
+
+        <span class="hidden-sm-and-down">
+
+          <slot name="setState" :calendar="calendar"></slot>
+
+        </span>
+      </v-toolbar-title>
+    </slot>
 
     <slot name="today" v-bind="{setToday, todayDate, calendar}">
 
