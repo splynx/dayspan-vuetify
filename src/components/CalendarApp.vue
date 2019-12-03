@@ -390,7 +390,7 @@ export default {
       },
       set(type)
       {
-        this.rebuild(undefined, true, type);
+        this.rebuild(new Date(), true, type);
       }
     },
 
