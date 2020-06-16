@@ -21,9 +21,9 @@
 
           <v-card>
             <v-card-title>
-              <slot name="selectDateWidgetTitle">
-                <span class="headline">Select date</span>
-              </slot>
+              <span class="headline">
+                <slot name="selectDateWidgetTitle">Select date</slot>
+              </span>
             </v-card-title>
             <v-card-text>
               <v-container grid-list-md :style="{ padding: '0' }">
@@ -44,9 +44,9 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <slot name="selectDateWidgetActions" v-bind="{dialog}">
-                <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-              </slot>
+              <v-btn color="blue darken-1" flat @click="dialog = false">
+                <slot name="selectDateWidgetActions">Close</slot>
+              </v-btn>
             </v-card-actions>
           </v-card>
 
