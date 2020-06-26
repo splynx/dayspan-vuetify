@@ -390,7 +390,7 @@ export default {
       },
       set(type)
       {
-        this.rebuild(new Date(), true, type);
+        this.rebuild(Day.today(), true, type);
       }
     },
 
