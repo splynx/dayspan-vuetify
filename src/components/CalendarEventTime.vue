@@ -262,7 +262,7 @@ export default {
   content: "";
   display: block;
   position: absolute;
-  width: 4px;
+  width: 3px;
   height: 100%;
   background-color: #1197d6;
   left: 0;
@@ -270,7 +270,7 @@ export default {
 }
 
 .ds-calendar-event {
-  margin: 1px;
+  margin: 0;
   color: white;
   overflow: hidden;
   text-overflow: ellipsis;
