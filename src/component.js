@@ -529,8 +529,7 @@ export default {
         left: '0px',
         right: '0px',
         marginRight: '-1px',
-        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget ),
-        borderLeft: '4px solid #1197d6'
+        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget )
       };
     },
 
@@ -546,8 +545,7 @@ export default {
         color: details.forecolor,
         left: starting ? '0px' : '-5px',
         right: ending ? '0px' : '-6px',
-        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget ),
-        borderLeft: '4px solid #1197d6'
+        backgroundColor: this.blend( stateColor, this.placeholderBlendAmount, this.placeholderBlendTarget )
       };
     },
 
