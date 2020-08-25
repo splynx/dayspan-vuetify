@@ -109,7 +109,7 @@ export default {
         return {
           display: 'inline-block',
           textOverflow: 'ellipsis',
-          overflow: 'hidden',
+          overflow: 'hidden',ope
           width: '100%'
         };
     },
@@ -186,6 +186,7 @@ export default {
     {
       if (this.calendarEvent.event.data.openPopover === true) {
         this.openPopover();
+        this.calendarEvent.event.data.openPopover = false;
       }
     },
 

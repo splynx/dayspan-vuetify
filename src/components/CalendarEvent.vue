@@ -158,6 +158,11 @@ export default {
     menu: false
   }),
 
+  watch:
+  {
+    'calendarEvent.event.data': 'onEventDataChange',
+  },
+
   methods:
   {
     close()
@@ -186,6 +191,19 @@ export default {
           this.menu = !this.menu;
         }
       }
+    },
+
+    onEventDataChange()
+    {
+      if (this.calendarEvent.event.data.openPopover === true) {
+        this.openPopover();
+        this.calendarEvent.event.data.openPopover = false;
+      }
+    },
+
+    openPopover()
+    {
+      this.menu = true;
     },
 
     mouseEnterEvent($event)
