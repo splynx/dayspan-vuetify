@@ -109,7 +109,7 @@ export default {
         return {
           display: 'inline-block',
           textOverflow: 'ellipsis',
-          overflow: 'hidden',ope
+          overflow: 'hidden',
           width: '100%'
         };
     },
