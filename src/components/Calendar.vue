@@ -173,6 +173,11 @@ export default {
     canMove()
     {
       return this.$dayspan.features.move && this.handleMove && !this.readOnly && !this.$dayspan.readOnly;
+    },
+
+    canMoveDay()
+    {
+      return this.canMove() && this.$dayspan.features.moveDay;
     }
   },
 
@@ -316,7 +321,7 @@ export default {
 
       this.mouseMoveCheckReady();
 
-      if (this.moving)
+      if (this.moving && this.canMoveDay)
       {
         var day = mouseEvent.day;
 

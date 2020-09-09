@@ -64,7 +64,8 @@ export default {
       forecast:       true,
       addDay:         true,
       addTime:        true,
-      hideOnMove:     true
+      hideOnMove:     true,
+      moveDay:        true
     },
 
     prompt: {
