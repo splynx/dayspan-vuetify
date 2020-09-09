@@ -177,7 +177,7 @@ export default {
 
     canMoveDay()
     {
-      return this.canMove() && this.$dayspan.features.moveDay;
+      return this.canMove && this.$dayspan.features.moveDay;
     }
   },
 
