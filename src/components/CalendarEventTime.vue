@@ -1,7 +1,7 @@
 <template>
 
   <v-menu
-    class="ds-calendar-event"
+    :class="classes"
     :content-class="contentClass"
     :disabled="!hasPopover"
     :style="style"
@@ -101,7 +101,16 @@ export default {
     {
       return this.isPlaceholderWithDay ?
         this.$dayspan.getStylePlaceholderTimed( this.details, this.calendarEvent, this.isPlaceholderWithDay ) :
-        this.$dayspan.getStyleTimed( this.calendar, this.details, this.calendarEvent, this.eventsFullHeight, this.index );
+        this.$dayspan.getStyleTimed( this.calendar, this.details, this.calendarEvent, this.eventsFullHeight, this.index, this.isPart);
+    },
+
+    classes()
+    {
+      return {
+        'ds-calendar-event': true,
+        'ds-calendar-event-part': this.isPart,
+        'ds-calendar-event-small': parseInt(this.style.height) < 50,
+      };
     },
 
     titleStyle()
@@ -114,12 +123,20 @@ export default {
         };
     },
 
+    isPart()
+    {
+      return !(
+        this.calendarEvent.starting ||
+        (
+                this.calendar &&
+                !this.calendar.span.contains( this.calendarEvent.time.start )
+        )
+      );
+    },
+
     showName()
     {
-      return this.calendarEvent.starting || (
-        this.calendar &&
-        !this.calendar.span.contains( this.calendarEvent.time.start )
-      );
+      return !this.isPart || this.$dsDefaults().showTitleInAllParts;
     },
 
     hasPopover()

@@ -442,7 +442,7 @@ export default {
       };
     },
 
-    getStyleTimed(calendar, details, calendarEvent, eventsFullHeight, index)
+    getStyleTimed(calendar, details, calendarEvent, eventsFullHeight, index, isPart)
     {
       let past = calendarEvent.time.end.isBefore( this.now );
       let cancelled = calendarEvent.cancelled;
@@ -464,7 +464,7 @@ export default {
       return {
         top: bounds.top + 'px',
         height: height + 'px',
-        minHeight: '50px',
+        minHeight: isPart ? '20px' : '50px',
         left: left,
         maxWidth: maxWidth,
         backgroundColor: stateColor,

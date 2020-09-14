@@ -226,7 +226,8 @@ export default {
       offsetOverflow: true,
       offsetX: true,
       maxWidth: 500
-    }
+    },
+    showTitleInAllParts: true
   },
 
   dsIdentifierChip: {
@@ -253,6 +254,7 @@ export default {
     hasExclusions: true,
     hasInclusions: true,
     hasCancelled: true,
+    showTitleInAllParts: true,
     labels: {
       moreActions:  LOCALE_ENTRY,
       cancel:       LOCALE_ENTRY,
