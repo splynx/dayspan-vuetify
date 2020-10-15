@@ -109,7 +109,7 @@ export default {
 
     contentClass()
     {
-      return this.$dayspan.fullscreenPopovers ? 'ds-fullscreen' : '';
+      return this.$dsDefaults().allowFullscreenPopover && this.$dayspan.fullscreenPopovers ? 'ds-fullscreen' : '';
     },
 
     sameDayEvents()

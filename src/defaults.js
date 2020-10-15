@@ -109,7 +109,8 @@ export default {
       offsetOverflow: true,
       offsetX: true,
       maxWidth: 500
-    }
+    },
+    allowFullscreenPopover: true
   },
 
   dsCalendarEventChip: {
@@ -227,7 +228,8 @@ export default {
       offsetX: true,
       maxWidth: 500
     },
-    showTitleInAllParts: true
+    showTitleInAllParts: true,
+    allowFullscreenPopover: true
   },
 
   dsIdentifierChip: {
