@@ -433,7 +433,7 @@ export default {
       return {
         top: ((calendarEvent.row - (index || 0)) * this.eventHeight) + 'px',
         backgroundColor: stateColor,
-        color: past ? this.getPastEventForecolor() : details.forecolor,
+        color: details.forecolor,
         left: calendarEvent.starting ? '0px' : '-5px',
         right: calendarEvent.ending ? '0px' : '-6px',
         textDecoration: cancelled ? 'line-through' : 'inherit',
@@ -468,7 +468,7 @@ export default {
         left: left,
         maxWidth: maxWidth,
         backgroundColor: stateColor,
-        color: past ? this.getPastEventForecolor() : details.forecolor,
+        color: details.forecolor,
         marginLeft: calendarEvent.starting ? 0 : '-5px',
         marginRight: calendarEvent.ending ? 0 : '-5px',
         textDecoration: cancelled ? 'line-through' : 'inherit',
@@ -486,11 +486,6 @@ export default {
     getStyleNowBorder()
     {
       return '#ea4335 solid 2px';
-    },
-
-    getPastEventForecolor()
-    {
-      return '#3c3a38';
     },
 
     getStyleNow()
